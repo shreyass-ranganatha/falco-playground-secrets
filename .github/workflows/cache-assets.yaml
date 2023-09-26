@@ -28,33 +28,31 @@ jobs:
 
     - name: Setup fs
       run: |
-        mkdir -p br-assets/latest/
-        
         FOLDER_NAME=$(find . -type d -name "falco-*-wasm" -print -quit)
         export VERSION=$(echo $FOLDER_NAME | sed -E 's/^.+falco-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 
-        echo $VERSION
         mkdir -p br-assets/$VERSION/
+        echo $VERSION > latest.txt
+        echo $VERSION
 
     - name: Move artifacts
       run: |
-        ls falco-*-wasm/usr/bin
-
+        VERSION=`cat latest.txt`
         echo $VERSION
       
-        mv falco-*-wasm/usr/bin/falco.wasm br-assets/latest/falco.wasm
-        mv falco-*-wasm/usr/bin/falco.js br-assets/latest/falco.js
+        mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
+        mv falco-*-wasm/usr/bin/falco.js br-assets/$VERSION/falco.js
 
-        echo br-assets/latest/
-        ls br-assets/latest/
+        ls br-assets/$VERSION/
 
-    - run: |
+    - name: Push
+      run: |
+        VERSION=`cat latest.txt`
+        echo $VERSION
+        
         cd br-assets
         git config user.name github-actions
         git config user.email github-actions@github.com
-        pwd
-        git branch
-        ls *
-        git add latest/falco.wasm latest/falco.js
+        git add $VERSION/falco.wasm $VERSION/falco.js latest.txt
         git commit -m "Update assets"
         git push
