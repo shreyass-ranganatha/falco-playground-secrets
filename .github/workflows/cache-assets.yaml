@@ -50,6 +50,6 @@ jobs:
         cd br-assets
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git add "$VERSION/*"
+        git add $VERSION/falco.wasm $VERSION/falco.js
         git commit -m "Update assets"
         git push
