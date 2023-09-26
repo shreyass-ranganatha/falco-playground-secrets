@@ -36,6 +36,8 @@ jobs:
         echo $VERSION
         mkdir -p br-assets/$VERSION/
 
+        ls */*
+
     - name: Move artifacts
       run: |
         mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
