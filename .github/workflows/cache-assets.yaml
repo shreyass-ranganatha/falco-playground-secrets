@@ -34,19 +34,17 @@ jobs:
         VERSION=$(echo $FOLDER_NAME | sed -E 's/^.+falco-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 
         echo $VERSION
-        mkdir -p br-assets/$VERSION
+        mkdir -p br-assets/$VERSION/
 
     - name: Move artifacts
       run: |
         mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
         mv falco-*-wasm/usr/bin/falco.js br-assets/$VERSION/falco.js
 
-        ls */*
-
     - run: |
         cd br-assets
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git add $VERSION/*
+        git add "$VERSION/*"
         git commit -m "Update assets"
         git push
