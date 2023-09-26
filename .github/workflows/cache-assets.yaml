@@ -28,7 +28,8 @@ jobs:
 
     - name: Setup fs
       run: |
-        mkdir -p br-assets/falco_artifact-latest/
+        mkdir -p br-assets/latest/
+        ls falco*
 
     - name: Move artifacts
       run: |
