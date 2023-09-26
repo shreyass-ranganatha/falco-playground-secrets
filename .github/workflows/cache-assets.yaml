@@ -37,13 +37,13 @@ jobs:
 
     - name: Move artifacts
       run: |
-        mv falco-*-wasm/usr/bin/falco.wasm br-assets/falco_artifact-latest/falco.wasm
-        mv falco-*-wasm/usr/bin/falco.js br-assets/falco_artifact-latest/falco.js
+        mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
+        mv falco-*-wasm/usr/bin/falco.js br-assets/$VERSION/falco.js
 
     - run: |
         cd br-assets
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git add falco_artifact-latest/*
+        git add $VERSION/*
         git commit -m "Update assets"
         git push
