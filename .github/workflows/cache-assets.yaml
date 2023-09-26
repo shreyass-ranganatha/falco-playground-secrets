@@ -17,7 +17,7 @@ jobs:
       uses: dawidd6/action-download-artifact@v2.28.0
       with:
         github_token: ${{ github.token }}
-        workflow: 26039754
+        workflow: "ci.yml" # 26039754
         repo: falcosecurity/falco
         workflow_conclusion: success
         name: falco-\d+\.\d+\.\d+-\d+\+[a-f0-9]+-wasm.tar.gz
