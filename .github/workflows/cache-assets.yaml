@@ -31,7 +31,7 @@ jobs:
         mkdir -p br-assets/latest/
         
         FOLDER_NAME=$(find . -type d -name "falco-*-wasm" -print -quit)
-        VERSION=$(echo $FOLDER_NAME | sed -E 's/^.+falco-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+        export VERSION=$(echo $FOLDER_NAME | sed -E 's/^.+falco-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 
         echo $VERSION
         mkdir -p br-assets/$VERSION/
