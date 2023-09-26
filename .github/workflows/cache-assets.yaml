@@ -40,6 +40,8 @@ jobs:
         mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
         mv falco-*-wasm/usr/bin/falco.js br-assets/$VERSION/falco.js
 
+        ls */*
+
     - run: |
         cd br-assets
         git config user.name github-actions
