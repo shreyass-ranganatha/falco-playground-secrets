@@ -32,12 +32,13 @@ jobs:
         export VERSION=$(echo $FOLDER_NAME | sed -E 's/^.+falco-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 
         mkdir -p br-assets/$VERSION/
-        echo $VERSION > latest.txt
+
+        echo $VERSION > br-assets/latest.txt
         echo $VERSION
 
     - name: Move artifacts
       run: |
-        VERSION=`cat latest.txt`
+        VERSION=`cat br-assets/latest.txt`
         echo $VERSION
       
         mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
@@ -47,10 +48,12 @@ jobs:
 
     - name: Push
       run: |
+        cd br-assets
+
         VERSION=`cat latest.txt`
         echo $VERSION
-        
-        cd br-assets
+        ls $VERSION
+
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add $VERSION/falco.wasm $VERSION/falco.js latest.txt
