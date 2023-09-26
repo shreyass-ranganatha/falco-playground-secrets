@@ -43,7 +43,8 @@ jobs:
         mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
         mv falco-*-wasm/usr/bin/falco.js br-assets/$VERSION/falco.js
 
-        ls br-assets/*
+        echo br-assets/$VERSION/
+        ls br-assets/$VERSION/
 
     - run: |
         cd br-assets
