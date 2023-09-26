@@ -40,11 +40,11 @@ jobs:
       run: |
         ls falco-*-wasm/usr/bin
       
-        mv falco-*-wasm/usr/bin/falco.wasm br-assets/$VERSION/falco.wasm
-        mv falco-*-wasm/usr/bin/falco.js br-assets/$VERSION/falco.js
+        mv falco-*-wasm/usr/bin/falco.wasm br-assets/latest/falco.wasm
+        mv falco-*-wasm/usr/bin/falco.js br-assets/latest/falco.js
 
-        echo br-assets/$VERSION/
-        ls br-assets/$VERSION/
+        echo br-assets/latest/
+        ls br-assets/latest/
 
     - run: |
         cd br-assets
@@ -53,6 +53,6 @@ jobs:
         pwd
         git branch
         ls *
-        git add $VERSION/falco.wasm $VERSION/falco.js
+        git add latest/falco.wasm latest/falco.js
         git commit -m "Update assets"
         git push
