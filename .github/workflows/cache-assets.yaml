@@ -19,6 +19,8 @@ jobs:
         git checkout --orphan assets
         git rm -rf .
 
+        git pull origin assets || true
+
         echo "# Downloadable Assets" > README.md
         git add .
 
