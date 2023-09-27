@@ -10,8 +10,22 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: assets
+        ref: main
         path: br-assets
+
+    - run: |
+        cd br-assets
+        
+        git checkout --orphan assets
+        git rm -rf .
+
+        echo "# Downloadable Assets" > README.md
+        git add .
+        git commit -m "Initial commit"
+
+        git push --set-upstream origin assets
+
+        cd ..
 
     - name: Download artifacts from falco
       uses: dawidd6/action-download-artifact@v2.28.0
@@ -57,5 +71,5 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.com
         git add $VERSION/falco.wasm $VERSION/falco.js latest.txt
-        git diff-index --quiet HEAD || git commit -m "Update assets"
+        git diff-index --quiet HEAD || git commit -m "$VERSION"
         git push
