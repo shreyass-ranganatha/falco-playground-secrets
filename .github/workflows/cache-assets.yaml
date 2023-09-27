@@ -21,8 +21,11 @@ jobs:
 
         echo "# Downloadable Assets" > README.md
         git add .
-        git commit -m "Initial commit"
 
+        git config user.name github-actions
+        git config user.email github-actions@github.co
+      
+        git commit -m "Initial commit"
         git push --set-upstream origin assets
 
         cd ..
@@ -70,6 +73,7 @@ jobs:
 
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git add $VERSION/falco.wasm $VERSION/falco.js latest.txt
+        
+        git add .
         git diff-index --quiet HEAD || git commit -m "$VERSION"
         git push
