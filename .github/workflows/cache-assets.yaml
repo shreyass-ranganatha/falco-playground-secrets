@@ -70,12 +70,9 @@ jobs:
         cd br-assets
 
         VERSION=`cat latest.txt`
-        echo $VERSION
-        ls $VERSION
-
-        git config user.name github-actions
-        git config user.email github-actions@github.com
+        echo $VERSION; ls $VERSION
         
         git add .
         git diff-index --quiet HEAD || git commit -m "$VERSION"
+
         git push
