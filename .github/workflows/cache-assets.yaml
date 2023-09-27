@@ -27,7 +27,7 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.co
       
-        git commit -m "Initial commit"
+        git diff-index --quiet HEAD || git commit -m "Initial commit"
         git push --set-upstream origin assets
 
         cd ..
