@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: assets
           path: br-assets
 
       - name: Download artifacts from falco
@@ -60,6 +60,9 @@ jobs:
           git add .
 
           : # Avoid committing if no file is changed
+
+          git config user.name github-actions
+          git config user.email github-actions@github.co
 
           git diff-index --quiet HEAD || git commit -m "$VERSION"
 
